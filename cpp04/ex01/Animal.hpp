@@ -1,0 +1,21 @@
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
+
+#include <iostream>
+#include "Brain.hpp"
+
+class Animal
+{
+    public:
+        Animal();
+        virtual ~Animal();
+    
+        std::string getType() const;
+        Brain *getBrain() const;
+        virtual void makeSound() const;
+    protected:
+        std::string type;
+        Brain* brain;
+};
+
+#endif
