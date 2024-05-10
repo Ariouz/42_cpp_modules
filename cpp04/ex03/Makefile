@@ -1,6 +1,6 @@
-NAME= animal
+NAME= interface
 
-SRCS= main.cpp Character.cpp ICharacter.cpp Ice.cpp Cure.cpp AMateria.cpp IMateriaSource.cpp MateriaSource.cpp
+SRCS= main.cpp AMateria.cpp Character.cpp Ice.cpp Cure.cpp MateriaSource.cpp
 OBJS= $(SRCS:.cpp=.o)
 
 FLAGS= -Wall -Wextra -Werror -std=c++98

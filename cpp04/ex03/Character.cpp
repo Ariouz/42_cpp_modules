@@ -1,14 +1,23 @@
 #include "Character.hpp"
 
-Character::Character(std::string const& name) : name(name){}
+Character::Character(std::string const& name) : name(name)
+{
+    this->dropIdx = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        this->inventory[i] = 0;
+    }
+    for (int i = 0; i < 1000; i++)
+    {
+        this->dropped[i] = 0;
+    }
+}
 
 Character::Character(const Character& from)
 {
     this->name = from.name;
     for (int i = 0; i < 4; i++)
-    {
         this->inventory[i] = from.inventory[i]->clone();
-    }
 }
 
 Character& Character::operator=(const Character& from)
@@ -25,8 +34,16 @@ Character& Character::operator=(const Character& from)
 
 Character::~Character()
 {
-    delete[] dropped;
-    delete[] inventory;
+    for (int i = 0; i < 4; i++)
+    {
+        if (this->inventory[i] != 0)
+            delete this->inventory[i];
+    }
+    while (dropIdx >= 0)
+    {
+        delete this->dropped[dropIdx];
+        dropIdx--;
+    }
 }
 
 std::string const& Character::getName() const

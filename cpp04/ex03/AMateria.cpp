@@ -7,6 +7,10 @@ AMateria::AMateria(std::string const& type)
 
 AMateria::AMateria(){}
 
+AMateria::~AMateria(){}
+
+void AMateria::use(ICharacter&){}
+
 std::string const& AMateria::getType() const
 {
     return this->type;
