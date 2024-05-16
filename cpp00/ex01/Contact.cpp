@@ -11,8 +11,17 @@ Contact::Contact(const Contact& contact)
     this->secret = contact.phone;
 }
 
-Contact::Contact(std::string firstName, std::string lastName, std::string nickName, std::string phone, std::string secret) :
-firstName(firstName), lastName(lastName), nickName(nickName), phone(phone), secret(secret) {}
+Contact& Contact::operator=(const Contact& other)
+{
+    if (this == &other)
+        return *this;
+    this->firstName = other.firstName;
+    this->lastName = other.lastName;
+    this->nickName = other.nickName;
+    this->phone = other.phone;
+    this->secret = other.secret;
+    return *this;
+}
 
 Contact::~Contact() {}
 

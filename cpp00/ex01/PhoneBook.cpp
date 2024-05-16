@@ -5,10 +5,13 @@
 
 PhoneBook::PhoneBook(){}
 
-PhoneBook::PhoneBook(Contact contacts[])
+PhoneBook& PhoneBook::operator=(const PhoneBook& other)
 {
+    if (this == &other)
+        return *this;
     for (int i = 0; i < getContactsLen(); i++)
-        this->contacts[i] = contacts[i];
+        this->contacts[i] = other.contacts[i];
+    return *this;
 }
 
 PhoneBook::PhoneBook(const PhoneBook& p){

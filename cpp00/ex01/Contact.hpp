@@ -15,7 +15,7 @@ class Contact
 
         Contact();
         Contact(const Contact& contact);
-        Contact(std::string firstName, std::string lastName, std::string nickName, std::string phone, std::string secret);
+        Contact& operator=(const Contact& other);
         ~Contact();
 
         void create();

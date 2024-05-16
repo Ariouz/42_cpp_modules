@@ -1,6 +1,9 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB(){}
+HumanB::HumanB()
+{
+    this->weapon = new Weapon();
+}
 
 HumanB::HumanB(const HumanB& human)
 {

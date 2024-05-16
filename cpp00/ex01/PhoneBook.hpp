@@ -9,7 +9,7 @@ class PhoneBook
         Contact contacts[8];
 
         PhoneBook();
-        PhoneBook(Contact contacts[]);
+        PhoneBook& operator=(const PhoneBook& other);
         PhoneBook(const PhoneBook& p);
         ~PhoneBook();
 

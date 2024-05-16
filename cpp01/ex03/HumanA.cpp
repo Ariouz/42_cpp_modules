@@ -1,12 +1,6 @@
 #include "HumanA.hpp"
 
-HumanA::HumanA(){}
-
-HumanA::HumanA(const HumanA& human)
-{
-    this->name = human.name;
-    this->weapon = human.weapon;
-}
+HumanA::HumanA(const HumanA& human) : name(human.name), weapon(human.weapon) {}
 
 HumanA::HumanA(std::string name, Weapon& weapon) : name(name), weapon(weapon) {}
 
