@@ -3,7 +3,7 @@ NAME= fixed
 SRCS= main.cpp Fixed.cpp
 OBJS= $(SRCS:.cpp=.o)
 
-FLAGS= -Wall -Wextra -Werror -std=c++98
+FLAGS= -Wall -Wextra -Werror -std=c++98 -pedantic
 
 $(NAME): $(OBJS)
 	c++ $(FLAGS) $(OBJS) -o $(NAME)
