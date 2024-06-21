@@ -13,6 +13,11 @@ class Intern
         Intern(const Intern& other);
         ~Intern();
 
+        static AForm*       makeShrubberyForm(const std::string& target);
+        static AForm*       makePresidentialPardon(const std::string& target);
+        static AForm*       makeRobotomy(const std::string& target);
+         
+
         AForm*    makeForm(const std::string& formName, const std::string& target);
 };
 
