@@ -20,6 +20,8 @@ class Array
         Array(unsigned int n) {
             array = new T[n];
             size = n;
+            for (std::size_t index = 0; index < n; index++)
+                array[index] = 0;
         }
 
         Array& operator=(const Array& other)
