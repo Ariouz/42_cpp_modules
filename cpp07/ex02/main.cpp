@@ -54,16 +54,18 @@ int main(int, char**)
         std::cerr << e.what() << " -> out of bounds\n";
     }
 
+    std::cout << "--- Print 10 first elements ---" << std::endl;
+    for (int i = 0; i < 10; i++)
+        std::cout << numbers[i] << std::endl;
+
+    std::cout << "--- Change 10 first elements ---" << std::endl;
+
     for (int i = 0; i < MAX_VAL; i++)
-    {
         numbers[i] = rand();
-    }
 
     std::cout << "--- Print 10 first elements ---" << std::endl;
     for (int i = 0; i < 10; i++)
-    {
         std::cout << numbers[i] << std::endl;
-    }
 
     delete [] mirror;//
     return 0;

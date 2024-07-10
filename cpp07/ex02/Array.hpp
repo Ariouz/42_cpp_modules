@@ -13,7 +13,7 @@ class Array
 
     public:
         Array() {
-            array = new T[];
+            array = new T[0];
             size = 0;
         }
 
@@ -27,7 +27,9 @@ class Array
         Array& operator=(const Array& other)
         {
             if (this == &other) return *this;
-            this->array = other.array;
+            this->array = new T[other.size];
+            for (std::size_t index = 0; index < other.size; index++)
+                this->array[index] = other.array[index];
             this->size = other.size;
             return *this;
         }
@@ -35,15 +37,17 @@ class Array
         Array(const Array& other)
         {
             if (this == &other) return;
-            this->array = other.array;
+            this->array = new T[other.size];
+            for (std::size_t index = 0; index < other.size; index++)
+                this->array[index] = other.array[index];
             this->size = other.size;
         }
 
-        ~Array() {};
+        ~Array() {delete[] array;};
 
         T& operator[](std::size_t index)
         {
-            if (index >= size) throw std::exception();
+            if (index >= size || index < 0) throw std::exception();
             return array[index];
         }
 
