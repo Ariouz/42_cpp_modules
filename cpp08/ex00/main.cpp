@@ -1,4 +1,5 @@
-#include "easyfind.hpp"
+# include "easyfind.hpp"
+# include <iostream>
 # include <vector>
 
 int main()
@@ -9,6 +10,10 @@ int main()
     values.push_back(42);
     values.push_back(12);
 
-    std::cout << easyfind(values, 12) << std::endl;
+    std::vector<int>::iterator it = easyfind(values, 42);
+    if (it != values.end())
+        std::cout << "Found value: " << *it << std::endl;
+    else
+        std::cout << "Value not found" << std::endl;
     return 0;
 }
