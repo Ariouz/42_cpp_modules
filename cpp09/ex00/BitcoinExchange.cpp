@@ -51,6 +51,9 @@ static bool isLeapYear(int year) {
 static bool isValidDate(int year, int month, int day) {
     const int daysInMonth[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+    if (year <= 0)
+        return false;
+
     if (month < 1 || month > 12 || day < 1)
         return false;
 
