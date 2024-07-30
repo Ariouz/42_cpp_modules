@@ -44,6 +44,22 @@ std::string BitcoinExchange::getInfileName() const
     return this->_infilename;
 }
 
+static bool isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+static bool isValidDate(int year, int month, int day) {
+    const int daysInMonth[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+    if (month < 1 || month > 12 || day < 1)
+        return false;
+
+    if (month == 2 && isLeapYear(year))
+        return day <= 29;
+
+    return day <= daysInMonth[month - 1];
+}
+
 static std::time_t convertToUnixTimestamp(const std::string& date_str, const std::string& filename) {
     std::tm tm = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     std::istringstream ss(date_str);
@@ -52,7 +68,7 @@ static std::time_t convertToUnixTimestamp(const std::string& date_str, const std
 
     ss >> year >> dash1 >> month >> dash2 >> day;
 
-    if (ss.fail() || dash1 != '-' || dash2 != '-' || month < 1 || month > 12 || day < 1 || day > 31 || year < 0) {
+    if (ss.fail() || dash1 != '-' || dash2 != '-' || !isValidDate(year, month, day)) {
         std::cout << "Error: "<< filename << " => " << date_str <<": Invalid date" << std::endl;
         return -1;
     }
@@ -159,13 +175,15 @@ void BitcoinExchange::printValues() const
         else
         {
             key = getClosest(values, key);
+            range = values.equal_range(key);
             if (key == 0)
             {
                 std::cout << "Not found for " << date << std::endl;
                 continue ;
             }
             std::cout << date << " => " << convertTimeToStr(key) << " ";
-            std::cout << " => " << value << " => " << (((range.first)->second) * value) << std::endl;
+            iter first = range.first;
+            std::cout << " => " << value << " => " << ((first->second) * value) << std::endl;
         }
     }
 }
