@@ -43,6 +43,11 @@ RPN::RPN(const std::string& arg)
     {
         if (isOperator(s, operators))
         {
+            if (this->_values.size() < 2)
+            {    
+                std::cout << "Error: " << s << " should be a number" << std::endl;
+                return ;
+            }
             int v1 = this->_values.top();
             this->_values.pop();
             int v2 = this->_values.top();
